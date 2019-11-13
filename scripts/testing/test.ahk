@@ -1,3 +1,6 @@
+#SingleInstance, force
+
 ^+r::
-MsgBox, This is a test.
+MouseGetPos, xpos, ypos
+MsgBox, The cursor is at X %xpos%, Y %ypos%
 return
