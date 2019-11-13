@@ -6,17 +6,17 @@ global fam3 := [1088, 512]
 global fam4 := [185, 890]
 global familiars := [fam1, fam2, fam3, fam4]
 
+
 ^+r::
 MouseGetPos, xpos, ypos
 MsgBox, The cursor is at X %xpos%, Y %ypos%
 return
 
 /::
+Send, {f down}
 For index, familiar in familiars
-  MouseMove, familiar[1], familiar[2]
-  xpos := familiar[1]
-  ypos := familiar[2]
-  MsgBox, The cursor is at X %xpos%, Y %ypos%
-  Click
   Sleep 100
+  MouseMove, familiar[1], familiar[2]
+  Click
+Send, {f up}
 return
