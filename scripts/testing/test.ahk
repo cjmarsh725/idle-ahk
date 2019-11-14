@@ -36,6 +36,8 @@ return
 
 
 ^b::StartCampaign()
+^n::EndCampaign()
+
 
 StartCampaign() {
   Send, {WheelUp 10}
@@ -55,5 +57,15 @@ StartCampaign() {
   Click
   Sleep, 100
   MouseMove, startObjective[1], startObjective[2]
+  Click
+}
+
+EndCampaign() {
+  Send, {r Down}{r Up}
+  Sleep, 700
+  MouseMove, completeAdventure[1], completeAdventure[2]
+  Click
+  Sleep, 16000
+  MouseMove, resetContinue[1], resetContinue[2]
   Click
 }
