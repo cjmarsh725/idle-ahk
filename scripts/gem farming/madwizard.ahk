@@ -28,8 +28,12 @@ global resetContinue := [800, 760]
 MouseGetPos, xpos, ypos
 MsgBox, The cursor is at X %xpos%, Y %ypos%
 
-
 ^!r::Reload  ; Ctrl-Alt-R restarts the script
+
+^+c::
+MouseGetPos, xpos, ypos
+PixelGetColor, testedColor, xpos, ypos
+MsgBox %testedColor%
 
 /::
 Send, {f down}
@@ -65,6 +69,11 @@ StartCampaign() {
   Sleep, 100
   MouseMove, startObjective[1], startObjective[2]
   Click
+  Sleep, 3000
+}
+
+WaitForTransition() {
+
 }
 
 EndCampaign() {
