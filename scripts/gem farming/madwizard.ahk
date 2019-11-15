@@ -35,23 +35,25 @@ global resetContinue := [800, 760]
   return
 }
 
-^+c::WaitForTransition()
-
-/::
-{
-  Send, {f down}
-  For index, familiar in familiars {
-    Sleep 100
-    MouseMove, familiar[1], familiar[2]
-    Click
-  }
-  Send, {f up}
-  return
-}
-
+/::PlaceFamiliars()
 ^b::StartCampaign()
 ^n::EndCampaign()
 
+^g::StartGemFarm()
+
+StartGemFarm() {
+  Loop {
+    StartCampaign()
+    PlaceFamiliars()
+    WaitForTransition()
+    RecruitChampions()
+    Loop, 4
+    {
+      WaitForTransition()
+    }
+    EndCampaign()
+  }
+}
 
 StartCampaign() {
   Send, {WheelUp 10}
@@ -75,6 +77,17 @@ StartCampaign() {
   Sleep, 3000
 }
 
+PlaceFamiliars() {
+  Send, {f down}
+  For index, familiar in familiars {
+    Sleep 100
+    MouseMove, familiar[1], familiar[2]
+    Click
+  }
+  Send, {f up}
+  Sleep, 100
+}
+
 WaitForTransition() {
   transitioning := False
   while !transitioning
@@ -85,7 +98,14 @@ WaitForTransition() {
     Sleep, 100
   }
   Sleep, 2000
-  MsgBox, Transition Complete
+}
+
+RecruitChampions() {
+  For index, champion in champions {
+    Sleep 100
+    MouseMove, champion[1], champion[2]
+    Click
+  }
 }
 
 EndCampaign() {
@@ -96,4 +116,5 @@ EndCampaign() {
   Sleep, 16000
   MouseMove, resetContinue[1], resetContinue[2]
   Click
+  Sleep, 2000
 }
