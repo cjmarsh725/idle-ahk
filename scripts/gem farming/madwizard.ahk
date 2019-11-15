@@ -45,9 +45,8 @@ StartGemFarm() {
   Loop {
     StartCampaign()
     PlaceFamiliars()
-    WaitForTransition()
     RecruitChampions()
-    Loop, 4
+    Loop, 30
     {
       WaitForTransition()
     }
@@ -74,7 +73,7 @@ StartCampaign() {
   Sleep, 100
   MouseMove, startObjective[1], startObjective[2]
   Click
-  Sleep, 3000
+  Sleep, 4000
 }
 
 PlaceFamiliars() {
@@ -101,6 +100,7 @@ WaitForTransition() {
 }
 
 RecruitChampions() {
+  Sleep, 5000
   For index, champion in champions {
     Sleep 100
     MouseMove, champion[1], champion[2]
