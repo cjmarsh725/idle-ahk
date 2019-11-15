@@ -73,7 +73,7 @@ StartCampaign() {
   Sleep, 100
   MouseMove, startObjective[1], startObjective[2]
   Click
-  Sleep, 4000
+  Sleep, 5000
 }
 
 PlaceFamiliars() {
