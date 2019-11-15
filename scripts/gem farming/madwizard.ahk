@@ -6,6 +6,8 @@ global campaignMap := [800, 500]
 global madWizard := [560, 500]
 global startObjective := [966, 675]
 
+global transitionTest := [105, 910]
+
 global fam1 := [1254, 428]
 global fam2 := [1254, 512]
 global fam3 := [1171, 594]
@@ -24,27 +26,28 @@ global champions := [celeste, nayeli, jarlaxle, calliope, asharra]
 global completeAdventure := [724, 610]
 global resetContinue := [800, 760]
 
-^+r::  ; Ctrl-Shift-R displays a pop-up with the mouse position
-MouseGetPos, xpos, ypos
-MsgBox, The cursor is at X %xpos%, Y %ypos%
-
 ^!r::Reload  ; Ctrl-Alt-R restarts the script
 
-^+c::
-MouseGetPos, xpos, ypos
-PixelGetColor, testedColor, xpos, ypos
-MsgBox %testedColor%
+^+r::  ; Ctrl-Shift-R displays a pop-up with the mouse position
+{
+  MouseGetPos, xpos, ypos
+  MsgBox, The cursor is at X %xpos%, Y %ypos%
+  return
+}
+
+^+c::WaitForTransition()
 
 /::
-Send, {f down}
-For index, familiar in familiars {
-  Sleep 100
-  MouseMove, familiar[1], familiar[2]
-  Click
+{
+  Send, {f down}
+  For index, familiar in familiars {
+    Sleep 100
+    MouseMove, familiar[1], familiar[2]
+    Click
+  }
+  Send, {f up}
+  return
 }
-Send, {f up}
-return
-
 
 ^b::StartCampaign()
 ^n::EndCampaign()
@@ -73,7 +76,16 @@ StartCampaign() {
 }
 
 WaitForTransition() {
-
+  transitioning := False
+  while !transitioning
+  {
+    PixelGetColor, testedColor, transitionTest[1], transitionTest[2]
+    if (testedColor = 0x000000)
+      transitioning = True
+    Sleep, 100
+  }
+  Sleep, 2000
+  MsgBox, Transition Complete
 }
 
 EndCampaign() {
