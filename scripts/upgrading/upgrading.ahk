@@ -12,4 +12,16 @@ global makos := [925, 900]
 global tyril := [1065, 900]
 global jamilah := [1205, 900]
 global arkhan := [1345, 900]
-global rightChamps := [minsc, delina, tyril, makos, jamilah, arkhan]
+global rightChamps := [minsc, tyril, delina, makos, jamilah, arkhan]
+
+
+^!r::Reload  ; Ctrl-Alt-R restarts the script
+
+/::  ; "/" displays a pop-up with the mouse position and color
+{
+  MouseGetPos, xpos, ypos
+  PixelGetColor, testedColor, xpos + 10, ypos
+  MsgBox, Cursor: X %xpos%, Y %ypos% | Color: %testedColor%
+  return
+}
+
