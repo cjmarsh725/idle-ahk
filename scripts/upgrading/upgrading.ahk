@@ -1,11 +1,11 @@
 #SingleInstance, force
 
-global bruenor := [275, 900]
-global celeste := [415, 900]
-global nayeli := [555, 900]
-global jarlaxle := [695, 900]
-global calliope := [835, 900]
-global asharra := [975, 900]
+global bruenor := [285, 900]
+global celeste := [420, 900]
+global nayeli := [560, 900]
+global jarlaxle := [700, 900]
+global calliope := [840, 900]
+global asharra := [985, 900]
 global leftChamps := [bruenor, celeste, nayeli, jarlaxle, calliope, asharra]
 
 global minsc := [645, 900]
@@ -58,10 +58,10 @@ TestChamp(champion) {
     Click
     Sleep, 100
     PixelGetColor, popupColor, upgradeCheck[1], upgradeCheck[2]
-    If (popupColor = 0x171728) {
-      MouseMove, closeBtn[1], closeBtn[2]
-      Click
-      Sleep, 100
-    }
+    ; If (popupColor = 0x171728) {
+    ;   MouseMove, closeBtn[1], closeBtn[2]
+    ;   Click
+    ;   Sleep, 100
+    ; }
   }
 }
