@@ -58,10 +58,10 @@ TestChamp(champion) {
     Click
     Sleep, 100
     PixelGetColor, popupColor, upgradeCheck[1], upgradeCheck[2]
-    ; If (popupColor = 0x171728) {
-    ;   MouseMove, closeBtn[1], closeBtn[2]
-    ;   Click
-    ;   Sleep, 100
-    ; }
+    If (popupColor = 0x171728) {
+      MouseMove, closeBtn[1], closeBtn[2]
+      Click
+      Sleep, 100
+    }
   }
 }
