@@ -4,7 +4,8 @@
 global toggle := true
 global title := "Clicker Heroes"
 global clickRatios := [0.74, 0.62]
-
+global levelRatios := [0.79, 0.104]
+global levelBkg := 0xBCBA72
 
 /::
 {
@@ -16,11 +17,16 @@ global clickRatios := [0.74, 0.62]
     WinGetActiveStats, wintitle, width, height, xwin, ywin
     if (wintitle != title)
       return
+
+    ; levelx := levelRatios[1] * width
+    ; levely := levelRatios[2] * height
+    ; MouseMove, levelx, levely
+    ; Click
+
     x := clickRatios[1] * width
     y := clickRatios[2] * height
     MouseMove, x, y
     Click
-    Sleep, 10
   }
 }
 
@@ -31,7 +37,8 @@ global clickRatios := [0.74, 0.62]
   MouseGetPos, x, y
   xratio := 1 - ((width - x) / width)
   yratio := 1 - ((height - y) / height)
-  MsgBox, %title% `, %xratio% `, %yratio%
+  PixelGetColor, testedColor, x, y
+  MsgBox, %title%`, %xratio%`, %yratio%`, %testedColor%
   return
 }
 
