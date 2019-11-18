@@ -1,6 +1,28 @@
 #SingleInstance, force
+#MaxThreadsPerHotkey, 2
 
-global clickRatios := [0.729, 0.624]
+global toggle := true
+global title := "Clicker Heroes"
+global clickRatios := [0.74, 0.62]
+
+
+/::
+{
+  toggle := !toggle
+  Loop
+  {
+    if (toggle)
+      return
+    WinGetActiveStats, wintitle, width, height, xwin, ywin
+    if (wintitle != title)
+      return
+    x := clickRatios[1] * width
+    y := clickRatios[2] * height
+    MouseMove, x, y
+    Click
+    Sleep, 10
+  }
+}
 
 
 ^+r::
