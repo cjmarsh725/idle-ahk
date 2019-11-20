@@ -31,7 +31,7 @@ global levelBkg := 0xBCBA72
 }
 
 
-^+r::
+^+r:: ; Ctrl-Shift-R displays the active window title, location of the cursor, and the color it is over
 {
   WinGetActiveStats, title, width, height, xwin, ywin
   MouseGetPos, x, y
