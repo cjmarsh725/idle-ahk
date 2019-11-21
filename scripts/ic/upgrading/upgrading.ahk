@@ -21,8 +21,11 @@ global grey := 0x7A7A7A
 global green := 0x2A9E4A
 
 global scrollPosition := [210, 800]
-global upgradeCheck := [560, 740]
+
+global upgradeCheck := [800, 740]
 global closeBtn := [1052, 214]
+global threeUpgrade := [[550, 700], [800, 700], [1050, 700]]
+global twoUpgrade := [[675, 700], [925, 700]]
 
 ^!r::Reload  ; Ctrl-Alt-R restarts the script
 
