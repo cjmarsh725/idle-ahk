@@ -23,7 +23,7 @@ global green := 0x2A9E4A
 global scrollPosition := [210, 800]
 
 global upgradeCheck := [800, 740]
-global closeBtn := [1052, 214]
+global closeBtns := [[1052, 215], [1428, 215]]
 global threeUpgrade := [[550, 700], [800, 700], [1050, 700]]
 global twoUpgrade := [[675, 700], [925, 700]]
 
@@ -42,13 +42,13 @@ k::Upgrade()
 Upgrade() {
   MouseMove, scrollPosition[1], scrollPosition[2]
   Send, {WheelUp 10}
-  Sleep, 100
+  Sleep, 20
   For index, champion in leftChamps {
     TestChamp(champion)
   }
   MouseMove, scrollPosition[1], scrollPosition[2]
   Send, {WheelDown 10}
-  Sleep, 100
+  Sleep, 20
   For index, champion in rightChamps {
     TestChamp(champion)
   }
@@ -59,12 +59,12 @@ TestChamp(champion) {
   If (testedColor = 0x2A9E4A) {
     MouseMove, champion[1], champion[2]
     Click
-    Sleep, 100
+    Sleep, 20
     PixelGetColor, popupColor, upgradeCheck[1], upgradeCheck[2]
-    If (popupColor = 0x171728) {
+    If (popupColor = 0x171726) {
       MouseMove, closeBtn[1], closeBtn[2]
       Click
-      Sleep, 100
+      Sleep, 20
     }
   }
 }
