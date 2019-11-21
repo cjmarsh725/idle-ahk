@@ -23,11 +23,24 @@ global green := 0x2A9E4A
 global scrollPosition := [210, 800]
 
 global upgradeCheck := [800, 740]
-global closeBtns := [[1052, 215], [1428, 215]]
+global closeBtns := [[1052, 215], [1178, 215], [1428, 215]]
 global threeUpgrade := [[550, 700], [800, 700], [1050, 700]]
 global twoUpgrade := [[675, 700], [925, 700]]
 
 ^!r::Reload  ; Ctrl-Alt-R restarts the script
+
+^+r:: ; Unit testing function
+{
+  PixelGetColor, popupColor, upgradeCheck[1], upgradeCheck[2]
+  If (popupColor = 0x171726) {
+    For index, coords in closeBtns {
+      MouseMove, coords[1], coords[2]
+      Click
+      Sleep, 20
+    }
+  }
+  return
+}
 
 /::  ; "/" displays a pop-up with the mouse position and color
 {
@@ -59,12 +72,14 @@ TestChamp(champion) {
   If (testedColor = 0x2A9E4A) {
     MouseMove, champion[1], champion[2]
     Click
-    Sleep, 20
+    Sleep, 20 ; TODO - timing of popup
     PixelGetColor, popupColor, upgradeCheck[1], upgradeCheck[2]
     If (popupColor = 0x171726) {
-      MouseMove, closeBtn[1], closeBtn[2]
-      Click
-      Sleep, 20
+      For index, coords in closeBtns {
+        MouseMove, coords[1], coords[2]
+        Click
+        Sleep, 20
+      }
     }
   }
 }
